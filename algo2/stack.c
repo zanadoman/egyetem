@@ -18,6 +18,11 @@ void stack_init(stack* stack, size_t capacity) {
     stack->_capacity = capacity;
 }
 
+void stack_free(stack* stack) {
+    free(stack->_data);
+    stack_init(stack, 0);
+}
+
 size_t stack_size(stack const* stack) {
     return stack->_size;
 }
@@ -75,11 +80,6 @@ bool stack_pop(stack* stack, T* value) {
     --stack->_size;
 
     return true;
-}
-
-void stack_free(stack* stack) {
-    free(stack->_data);
-    stack_init(stack, 0);
 }
 
 int32_t main(int32_t argc, char* argv[]) {
