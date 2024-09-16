@@ -5,6 +5,7 @@ export class PhoneBook {
         this.persons = []
     }
 
+
     getPerson(email: string): Employee | undefined {
         return this.persons.find((person: Employee) => person.email === email)
     }

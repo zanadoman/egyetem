@@ -86,4 +86,5 @@ int32_t main() {
         stack_pop(&stack, &value);
         printf("%lu\n", value);
     }
+    stack_free(&stack);
 }
