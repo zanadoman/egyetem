@@ -79,11 +79,11 @@ int32_t main() {
     T value;
 
     stack_init(&stack, 10);
-    for (size_t i = 0; !stack_full(&stack); ++i) {
+    for (T i = 0; !stack_full(&stack); ++i) {
         stack_push(&stack, i);
     }
     for (size_t i = 0; !stack_empty(&stack); ++i) {
         stack_pop(&stack, &value);
-        printf("%i\n", value);
+        printf("%lu\n", value);
     }
 }
