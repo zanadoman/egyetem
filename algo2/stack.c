@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define T size_t
+#define T char*
 
 typedef struct {
     T* data;
@@ -74,17 +74,23 @@ void stack_free(stack* stack) {
     stack_init(stack, 0);
 }
 
-int32_t main() {
+int32_t main(int32_t argc, char* argv[]) {
     stack stack;
     T value;
 
-    stack_init(&stack, 10);
-    for (value = 0; !stack_full(&stack); ++value) {
-        stack_push(&stack, &value);
+    stack_init(&stack, argc);
+    while (!stack_full(&stack)) {
+        if (!stack_push(&stack, &argv[stack.size])) {
+            return EXIT_FAILURE;
+        }
     }
     while (!stack_empty(&stack)) {
-        stack_pop(&stack, &value);
-        printf("%lu\n", value);
+        if (!stack_pop(&stack, &value)) {
+            return EXIT_FAILURE;
+        }
+        printf("%s\n", value);
     }
     stack_free(&stack);
+
+    return EXIT_SUCCESS;
 }
