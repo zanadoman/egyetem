@@ -1,14 +1,7 @@
-import { Gender } from './gender';
-import { Person } from './person';
+import { Gender } from './Gender';
+import { Person } from './Person';
 
 export class Employee implements Person {
-    name: string
-    gender: Gender
-    birthDate: Date
-    ssn: string;
-    email: string;
-    phoneNumbers: string[];
-
     constructor(name: string, gender: Gender, birthDate: Date, ssn: string,
         email: string, phoneNumber?: string) {
         this.name = name
@@ -21,4 +14,11 @@ export class Employee implements Person {
             this.phoneNumbers.push(phoneNumber)
         }
     }
+
+    name: string
+    gender: Gender
+    birthDate: Date
+    ssn: string
+    email: string
+    phoneNumbers: string[]
 }
