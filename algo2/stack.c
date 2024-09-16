@@ -82,7 +82,7 @@ int32_t main() {
     for (T i = 0; !stack_full(&stack); ++i) {
         stack_push(&stack, i);
     }
-    for (size_t i = 0; !stack_empty(&stack); ++i) {
+    while (!stack_empty(&stack)) {
         stack_pop(&stack, &value);
         printf("%lu\n", value);
     }
