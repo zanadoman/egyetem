@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -17,38 +18,38 @@ void stack_init(stack* stack, size_t capacity) {
     stack->capacity = capacity;
 }
 
-int32_t stack_empty(stack* stack) {
+bool stack_empty(stack* stack) {
     return stack->size == 0;
 }
 
-int32_t stack_full(stack* stack) {
+bool stack_full(stack* stack) {
     return stack->size == stack->capacity;
 }
 
-int32_t stack_push(stack* stack, T value) {
+bool stack_push(stack* stack, T value) {
     T* data;
 
     if (stack->size == stack->capacity) {
-        return 1;
+        return false;
     }
 
     data = realloc(stack->data, sizeof(T) * (stack->size + 1));
     if (!data) {
-        return 1;
+        return false;
     }
     data[stack->size] = value;
 
     stack->data = data;
     ++stack->size;
 
-    return 0;
+    return true;
 }
 
 int32_t stack_pop(stack* stack, T* value) {
     T* data;
 
     if (stack->size == 0) {
-        return 1;
+        return false;
     }
 
     *value = stack->data[stack->size - 1];
@@ -58,14 +59,14 @@ int32_t stack_pop(stack* stack, T* value) {
     } else {
         data = realloc(stack->data, sizeof(T) * (stack->size - 1));
         if (!data) {
-            return 1;
+            return false;
         }
     }
 
     stack->data = data;
     --stack->size;
 
-    return 0;
+    return true;
 }
 
 void stack_free(stack* stack) {
