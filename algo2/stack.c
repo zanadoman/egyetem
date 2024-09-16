@@ -79,8 +79,8 @@ int32_t main() {
     T value;
 
     stack_init(&stack, 10);
-    for (T i = 0; !stack_full(&stack); ++i) {
-        stack_push(&stack, &i);
+    for (value = 0; !stack_full(&stack); ++value) {
+        stack_push(&stack, &value);
     }
     while (!stack_empty(&stack)) {
         stack_pop(&stack, &value);
