@@ -26,7 +26,7 @@ bool stack_full(stack const* stack) {
     return stack->size == stack->capacity;
 }
 
-bool stack_push(stack* stack, T value) {
+bool stack_push(stack* stack, T const* value) {
     T* data;
 
     if (stack->size == stack->capacity) {
@@ -37,7 +37,7 @@ bool stack_push(stack* stack, T value) {
     if (!data) {
         return false;
     }
-    data[stack->size] = value;
+    data[stack->size] = *value;
 
     stack->data = data;
     ++stack->size;
@@ -80,7 +80,7 @@ int32_t main() {
 
     stack_init(&stack, 10);
     for (T i = 0; !stack_full(&stack); ++i) {
-        stack_push(&stack, i);
+        stack_push(&stack, &i);
     }
     while (!stack_empty(&stack)) {
         stack_pop(&stack, &value);
