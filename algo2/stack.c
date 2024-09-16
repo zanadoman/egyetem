@@ -7,40 +7,48 @@
 #define T char*
 
 typedef struct {
-    T* data;
-    size_t size;
-    size_t capacity;
+    T* _data;
+    size_t _size;
+    size_t _capacity;
 } stack;
 
 void stack_init(stack* stack, size_t capacity) {
-    stack->data = NULL;
-    stack->size = 0;
-    stack->capacity = capacity;
+    stack->_data = NULL;
+    stack->_size = 0;
+    stack->_capacity = capacity;
+}
+
+size_t stack_size(stack const* stack) {
+    return stack->_size;
+}
+
+size_t stack_capacity(stack const* stack) {
+    return stack->_capacity;
 }
 
 bool stack_empty(stack const* stack) {
-    return stack->size == 0;
+    return stack->_size == 0;
 }
 
 bool stack_full(stack const* stack) {
-    return stack->size == stack->capacity;
+    return stack->_size == stack->_capacity;
 }
 
 bool stack_push(stack* stack, T const* value) {
     T* data;
 
-    if (stack->size == stack->capacity) {
+    if (stack->_size == stack->_capacity) {
         return false;
     }
 
-    data = realloc(stack->data, sizeof(T) * (stack->size + 1));
+    data = realloc(stack->_data, sizeof(T) * (stack->_size + 1));
     if (!data) {
         return false;
     }
-    data[stack->size] = *value;
+    data[stack->_size] = *value;
 
-    stack->data = data;
-    ++stack->size;
+    stack->_data = data;
+    ++stack->_size;
 
     return true;
 }
@@ -48,29 +56,29 @@ bool stack_push(stack* stack, T const* value) {
 bool stack_pop(stack* stack, T* value) {
     T* data;
 
-    if (stack->size == 0) {
+    if (stack->_size == 0) {
         return false;
     }
 
-    *value = stack->data[stack->size - 1];
-    if (stack->size == 1) {
-        free(stack->data);
+    *value = stack->_data[stack->_size - 1];
+    if (stack->_size == 1) {
+        free(stack->_data);
         data = NULL;
     } else {
-        data = realloc(stack->data, sizeof(T) * (stack->size - 1));
+        data = realloc(stack->_data, sizeof(T) * (stack->_size - 1));
         if (!data) {
             return false;
         }
     }
 
-    stack->data = data;
-    --stack->size;
+    stack->_data = data;
+    --stack->_size;
 
     return true;
 }
 
 void stack_free(stack* stack) {
-    free(stack->data);
+    free(stack->_data);
     stack_init(stack, 0);
 }
 
@@ -80,7 +88,7 @@ int32_t main(int32_t argc, char* argv[]) {
 
     stack_init(&stack, argc);
     while (!stack_full(&stack)) {
-        if (!stack_push(&stack, &argv[stack.size])) {
+        if (!stack_push(&stack, &argv[stack_size(&stack)])) {
             return EXIT_FAILURE;
         }
     }
