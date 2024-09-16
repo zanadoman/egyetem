@@ -18,11 +18,11 @@ void stack_init(stack* stack, size_t capacity) {
     stack->capacity = capacity;
 }
 
-bool stack_empty(stack* stack) {
+bool stack_empty(stack const* stack) {
     return stack->size == 0;
 }
 
-bool stack_full(stack* stack) {
+bool stack_full(stack const* stack) {
     return stack->size == stack->capacity;
 }
 
