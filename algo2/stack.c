@@ -45,7 +45,7 @@ bool stack_push(stack* stack, T value) {
     return true;
 }
 
-int32_t stack_pop(stack* stack, T* value) {
+bool stack_pop(stack* stack, T* value) {
     T* data;
 
     if (stack->size == 0) {
