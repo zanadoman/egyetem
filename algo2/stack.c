@@ -55,7 +55,7 @@ bool stack_pop(stack* stack, T* value) {
     *value = stack->data[stack->size - 1];
     if (stack->size == 1) {
         free(stack->data);
-        stack->data = NULL;
+        data = NULL;
     } else {
         data = realloc(stack->data, sizeof(T) * (stack->size - 1));
         if (!data) {
