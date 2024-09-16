@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define T int32_t
+#define T size_t
 
 typedef struct {
     T* data;
