@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define T char*
+#define T uint64_t
 
 typedef struct {
     T* _data;
@@ -83,22 +83,44 @@ bool stack_pop(stack* stack, T* value) {
 }
 
 int32_t main(int32_t argc, char* argv[]) {
-    stack stack;
-    T value;
+    // stack stack;
+    // T value;
+    //
+    // stack_init(&stack, argc);
+    // while (!stack_full(&stack)) {
+    //     if (!stack_push(&stack, &argv[stack_size(&stack)])) {
+    //         return EXIT_FAILURE;
+    //     }
+    // }
+    // while (!stack_empty(&stack)) {
+    //     if (!stack_pop(&stack, &value)) {
+    //         return EXIT_FAILURE;
+    //     }
+    //     puts(value);
+    // }
+    // stack_free(&stack);
 
-    stack_init(&stack, argc);
-    while (!stack_full(&stack)) {
-        if (!stack_push(&stack, &argv[stack_size(&stack)])) {
-            return EXIT_FAILURE;
-        }
-    }
-    while (!stack_empty(&stack)) {
-        if (!stack_pop(&stack, &value)) {
-            return EXIT_FAILURE;
-        }
-        puts(value);
-    }
-    stack_free(&stack);
+    // T number;
+    // stack stack;
+    // T sum;
+    //
+    // number = 5;
+    // stack_init(&stack, number);
+    //
+    // while (number) {
+    //     if (!stack_push(&stack, &number)) {
+    //         return EXIT_FAILURE;
+    //     }
+    //     --number;
+    // }
+    // sum = 1;
+    // while (!stack_empty(&stack)) {
+    //     if (!stack_pop(&stack, &number)) {
+    //         return EXIT_FAILURE;
+    //     }
+    //     sum *= number;
+    // }
+    // printf("%lu\n", sum);
 
     return EXIT_SUCCESS;
 }
