@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Student;
+use Illuminate\View\View;
 
 class StudentController extends Controller
 {
@@ -11,9 +12,9 @@ class StudentController extends Controller
         echo 'Add student';
     }
 
-    public function get(): void
+    public function get(): View
     {
-        echo 'Get student';
+        return view('student.list', ['records' => Student::getList()]);
     }
 
     public function update(): void
