@@ -54,9 +54,16 @@ class Smith(name: String, age: Int) : Employee(name, age, "smith") {
 
 data class Position(val x: Double, val y: Double)
 
+object Calculator {
+    fun pythagoras(a: Double, b: Double): Double {
+        return Math.sqrt(Math.pow(a, 2.0) + Math.pow(b, 2.0))
+    }
+}
+
 fun main() {
     println("Hello World!")
     var person = Person("John Doe", 20)
     println(person)
     println(Position(0.0, 5.0))
+    println(Calculator.pythagoras(3.0, 4.0))
 }
