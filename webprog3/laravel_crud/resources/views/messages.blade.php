@@ -7,6 +7,8 @@
 </head>
 <body>
 
+<p><b>{{ Auth::user()->email }}</b><p>
+
 @foreach ($messages as $message)
     <form action="{{ route('messages.destroy', $message->id) }}" method="POST">
         @csrf

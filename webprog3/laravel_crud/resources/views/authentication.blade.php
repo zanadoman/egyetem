@@ -13,7 +13,7 @@
     <label>E-mail</label>
     <input type="text" name="email" />
     <label>Password</label>
-    <input type="text" name="password" />
+    <input type="password" name="password" />
     <button type="submit">Register</button>
 </form>
 
@@ -23,7 +23,7 @@
     <label>E-mail</label>
     <input type="text" name="email" />
     <label>Password</label>
-    <input type="text" name="password" />
+    <input type="password" name="password" />
     <button type="submit">Login</button>
 </form>
 
