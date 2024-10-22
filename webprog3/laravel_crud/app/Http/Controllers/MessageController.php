@@ -16,26 +16,32 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         Message::create($this->validate($request));
-        return redirect()->back()->with('success', 'message sent');
+        return redirect()
+            ->back()
+            ->with('success', 'Message sent.');
     }
 
     public function update(Request $request, $id)
     {
         Message::find($id)->update($this->validate($request));
-        return redirect()->back()->with('success', 'message updated');
+        return redirect()
+            ->back()
+            ->with('success', 'Message edited.');
     }
 
     public function destroy($id)
     {
         Message::find($id)->delete();
-        return redirect()->back()->with('success', 'message deleted');
+        return redirect()
+            ->back()
+            ->with('success', 'Message deleted.');
     }
 
     private function validate(Request $request)
     {
         return $request->validate([
-            'title' => 'string|required',
-            'content' => 'string|required'
+            'title' => ['string', 'required'],
+            'content' => ['string', 'required']
         ]);
     }
 }
